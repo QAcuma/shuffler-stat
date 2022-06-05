@@ -30,6 +30,7 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
 
     compileOnly("org.projectlombok:lombok:$lombokBootVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokBootVersion")

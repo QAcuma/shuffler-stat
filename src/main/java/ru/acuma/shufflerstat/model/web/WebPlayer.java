@@ -11,6 +11,8 @@ import lombok.experimental.Accessors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WebPlayer {
 
+    private Long id;
+
     private String name;
 
     private Integer score;

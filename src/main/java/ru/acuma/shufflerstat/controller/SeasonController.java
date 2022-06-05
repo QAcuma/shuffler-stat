@@ -15,7 +15,6 @@ import java.util.List;
 
 import static ru.acuma.shufflerstat.controller.SeasonController.SEASONS;
 
-@CrossOrigin(originPatterns = "*")
 @RestController
 @RequestMapping(SEASONS)
 @RequiredArgsConstructor

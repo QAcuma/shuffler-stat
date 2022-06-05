@@ -9,18 +9,18 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WebResponse<T> {
 
-    private T data;
+    private T payload;
 
     private List<WebError> errors;
 
     private WebMessage message;
 
-    public WebResponse(T data) {
-        this.data = data;
+    public WebResponse(T payload) {
+        this.payload = payload;
     }
 
-    public WebResponse(T data, WebMessage message) {
-        this.data = data;
+    public WebResponse(T payload, WebMessage message) {
+        this.payload = payload;
         this.message = message;
     }
 
@@ -28,8 +28,8 @@ public class WebResponse<T> {
         this.errors = errors;
     }
 
-    public WebResponse(T data, List<WebError> errors) {
-        this.data = data;
+    public WebResponse(T payload, List<WebError> errors) {
+        this.payload = payload;
         this.errors = errors;
     }
 
