@@ -11,7 +11,6 @@ public class StatisticMapper extends BaseMapper {
 
     public WebPlayer toWebPlayer(StatisticResult source) {
         mapperFactory.classMap(StatisticResult.class, WebPlayer.class)
-                .field("rating", "score")
                 .field("firstName", "name")
                 .byDefault()
                 .register();
