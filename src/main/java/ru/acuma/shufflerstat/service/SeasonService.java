@@ -1,6 +1,6 @@
 package ru.acuma.shufflerstat.service;
 
-import ru.acuma.shufflerstat.model.web.WebSeason;
+import ru.acuma.shufflerlib.model.web.WebSeason;
 
 import java.util.List;
 

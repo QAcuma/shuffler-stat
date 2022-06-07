@@ -3,12 +3,11 @@ package ru.acuma.shufflerstat.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.StatisticResult;
+import ru.acuma.shufflerlib.model.web.WebLadder;
+import ru.acuma.shufflerlib.model.web.WebPlayer;
 import ru.acuma.shufflerlib.repository.SeasonRepository;
 import ru.acuma.shufflerlib.repository.StatisticRepository;
 import ru.acuma.shufflerstat.mapper.StatisticMapper;
-import ru.acuma.shufflerstat.model.web.WebLadder;
-import ru.acuma.shufflerstat.model.web.WebPlayer;
 import ru.acuma.shufflerstat.service.LadderService;
 
 import java.util.Comparator;

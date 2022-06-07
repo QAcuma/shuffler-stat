@@ -18,7 +18,7 @@ repositories {
     mavenCentral()
 }
 
-var shufflerLibVersion = "1.0.1"
+var shufflerLibVersion = "1.0.2"
 var springBootVersion = "2.6.7"
 var lombokBootVersion = "1.18.24"
 val codeGsonVersion = "2.9.0"
@@ -31,6 +31,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+
+    implementation("org.jooq:jooq:3.16.6")
 
     compileOnly("org.projectlombok:lombok:$lombokBootVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokBootVersion")

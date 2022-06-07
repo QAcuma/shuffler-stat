@@ -4,7 +4,7 @@ import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Component;
 import ru.acuma.shuffler.tables.pojos.Season;
 import ru.acuma.shufflerlib.mapper.BaseMapper;
-import ru.acuma.shufflerstat.model.web.WebSeason;
+import ru.acuma.shufflerlib.model.web.WebSeason;
 
 @Component
 public class SeasonMapper extends BaseMapper {
