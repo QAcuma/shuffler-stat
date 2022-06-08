@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.acuma.shufflerlib.model.Discipline;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.WebLadder;
+import ru.acuma.shufflerlib.model.web.LadderData;
 import ru.acuma.shufflerlib.model.web.WebResponse;
 import ru.acuma.shufflerstat.service.LadderService;
 
@@ -25,7 +25,7 @@ public class LadderController {
     public static final String CHAT_NAME = "/{chatName}";
 
     @GetMapping(CHAT_NAME)
-    public WebResponse<WebLadder> getChatLadder(
+    public WebResponse<LadderData> getChatLadder(
             @PathVariable String chatName,
             @RequestParam Discipline discipline,
             @RequestParam(required = false) Long season
@@ -34,7 +34,7 @@ public class LadderController {
                 .setChatName(chatName)
                 .setDiscipline(discipline)
                 .setSeasonId(season);
-        return new WebResponse<>(ladderService.getLadder(filter));
 
+        return new WebResponse<>(ladderService.getLadder(filter));
     }
 }

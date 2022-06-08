@@ -3,7 +3,7 @@ package ru.acuma.shufflerstat.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.WebLadder;
+import ru.acuma.shufflerlib.model.web.LadderData;
 import ru.acuma.shufflerlib.model.web.WebPlayer;
 import ru.acuma.shufflerlib.repository.SeasonRepository;
 import ru.acuma.shufflerlib.repository.StatisticRepository;
@@ -23,7 +23,7 @@ public class LadderServiceImpl implements LadderService {
     private final StatisticRepository statisticRepository;
 
     @Override
-    public WebLadder getLadder(Filter filter) {
+    public LadderData getLadder(Filter filter) {
         validateFilter(filter);
         List<WebPlayer> players = statisticRepository.findAllByFilter(filter)
                 .stream()
@@ -31,7 +31,7 @@ public class LadderServiceImpl implements LadderService {
                 .sorted(Comparator.comparingInt(WebPlayer::getScore).reversed())
                 .collect(Collectors.toList());
 
-        return new WebLadder(players);
+        return new LadderData(players);
     }
 
     private void validateFilter(Filter filter) {
