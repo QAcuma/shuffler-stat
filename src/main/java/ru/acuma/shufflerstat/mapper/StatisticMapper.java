@@ -4,7 +4,7 @@ import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Component;
 import ru.acuma.shufflerlib.mapper.BaseMapper;
 import ru.acuma.shufflerlib.model.StatisticResult;
-import ru.acuma.shufflerlib.model.web.WebPlayer;
+import ru.acuma.shufflerlib.model.web.entity.WebPlayer;
 
 @Component
 public class StatisticMapper extends BaseMapper {

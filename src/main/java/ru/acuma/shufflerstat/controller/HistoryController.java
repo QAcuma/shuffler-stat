@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.acuma.shufflerlib.model.Discipline;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.GameData;
-import ru.acuma.shufflerlib.model.web.WebResponse;
+import ru.acuma.shufflerlib.model.web.entity.WebResponse;
+import ru.acuma.shufflerlib.model.web.wrapper.GameData;
 import ru.acuma.shufflerstat.service.HistoryService;
 
 import static ru.acuma.shufflerstat.controller.HistoryController.HISTORY;
+import static ru.acuma.shufflerstat.controller.PlayerController.PLAYER_ID;
 
 @RestController
 @RequestMapping(HISTORY)
@@ -22,7 +23,6 @@ public class HistoryController {
     private final HistoryService historyService;
 
     public static final String HISTORY = "/history";
-    public static final String PLAYER_ID = "/{playerId}";
 
     @GetMapping(PLAYER_ID)
     public WebResponse<GameData> getHistory(

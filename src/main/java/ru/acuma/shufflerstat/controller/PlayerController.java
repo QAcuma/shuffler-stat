@@ -8,33 +8,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.acuma.shufflerlib.model.Discipline;
 import ru.acuma.shufflerlib.model.Filter;
+import ru.acuma.shufflerlib.model.web.entity.WebPlayerDetails;
 import ru.acuma.shufflerlib.model.web.entity.WebResponse;
-import ru.acuma.shufflerlib.model.web.wrapper.LadderData;
-import ru.acuma.shufflerstat.service.LadderService;
+import ru.acuma.shufflerlib.model.web.wrapper.PlayerData;
+import ru.acuma.shufflerstat.service.PlayerService;
 
-import static ru.acuma.shufflerstat.controller.LadderController.CHAT;
+import static ru.acuma.shufflerstat.controller.PlayerController.PLAYER;
 
 @RestController
-@RequestMapping(CHAT)
+@RequestMapping(PLAYER)
 @RequiredArgsConstructor
-public class LadderController {
+public class PlayerController {
 
-    private final LadderService ladderService;
+    public static final String PLAYER = "/player";
+    public static final String PLAYER_ID = "/{playerId}";
 
-    public static final String CHAT = "/chat";
-    public static final String CHAT_NAME = "/{chatName}";
+    private final PlayerService playerService;
 
-    @GetMapping(CHAT_NAME)
-    public WebResponse<LadderData> getChatLadder(
-            @PathVariable String chatName,
+    @GetMapping(PLAYER_ID)
+    public WebResponse<PlayerData> getHistory(
+            @PathVariable Long playerId,
             @RequestParam Discipline discipline,
-            @RequestParam(required = false) Long season
-    ) {
+            @RequestParam(required = false) Long season) {
         Filter filter = new Filter()
-                .setChatName(chatName)
+                .setPlayerId(playerId)
                 .setDiscipline(discipline)
                 .setSeasonId(season);
 
-        return new WebResponse<>(ladderService.getLadder(filter));
+        return new WebResponse<>(playerService.getPlayerDetails(filter));
     }
+
 }

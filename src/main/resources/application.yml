@@ -27,7 +27,7 @@ server:
     threads:
       max: 1000
       min-spare: 50
-
-rating:
-  team-build-strategy: ${K_SHUFFLER_TEAM_BUILD_STRATEGY:random}
-  spread-distance: ${K_SHUFFLER_RATING_SPREAD:100}
+  cors.allowed:
+    headers: ${CORS_HEADERS:Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Methods, Cache-Control, Content-Type}
+    origins: ${CORS_ORIGINS:http://localhost:3000}
+    methods: ${CORS_METHODS:GET, POST, PUT, DELETE, PUT, OPTIONS, PATCH, DELETE}

@@ -2,7 +2,7 @@ package ru.acuma.shufflerstat.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.acuma.shufflerlib.model.web.WebSeason;
+import ru.acuma.shufflerlib.model.web.entity.WebSeason;
 import ru.acuma.shufflerlib.repository.SeasonRepository;
 import ru.acuma.shufflerstat.mapper.SeasonMapper;
 import ru.acuma.shufflerstat.service.SeasonService;
@@ -24,5 +24,10 @@ public class SeasonServiceImpl implements SeasonService {
                 .map(seasonMapper::toWebSeason)
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public Long getCurrentSeasonId() {
+        return seasonRepository.getCurrentSeason().getId();
     }
 }

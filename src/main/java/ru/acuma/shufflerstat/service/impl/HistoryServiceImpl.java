@@ -3,8 +3,9 @@ package ru.acuma.shufflerstat.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.GameData;
+import ru.acuma.shufflerlib.model.web.wrapper.GameData;
 import ru.acuma.shufflerlib.repository.RatingHistoryRepository;
+import ru.acuma.shufflerstat.service.FilterService;
 import ru.acuma.shufflerstat.service.HistoryService;
 
 @Service
@@ -12,9 +13,12 @@ import ru.acuma.shufflerstat.service.HistoryService;
 public class HistoryServiceImpl implements HistoryService {
 
     private final RatingHistoryRepository ratingHistoryRepository;
+    private final FilterService filterService;
 
     @Override
     public GameData getGames(Filter filter) {
+        filterService.fillDefaults(filter);
+
         return new GameData(ratingHistoryRepository.findHistory(filter));
     }
 }
