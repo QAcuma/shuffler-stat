@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.acuma.shufflerlib.model.Discipline;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.entity.WebPlayerDetails;
-import ru.acuma.shufflerlib.model.web.entity.WebResponse;
 import ru.acuma.shufflerlib.model.web.wrapper.PlayerData;
+import ru.acuma.shufflerlib.model.web.wrapper.WebResponse;
 import ru.acuma.shufflerstat.service.PlayerService;
 
 import static ru.acuma.shufflerstat.controller.PlayerController.PLAYER;

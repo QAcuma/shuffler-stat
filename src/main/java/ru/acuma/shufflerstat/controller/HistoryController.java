@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.acuma.shufflerlib.model.Discipline;
 import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.entity.WebResponse;
 import ru.acuma.shufflerlib.model.web.wrapper.GameData;
+import ru.acuma.shufflerlib.model.web.wrapper.WebResponse;
 import ru.acuma.shufflerstat.service.HistoryService;
 
 import static ru.acuma.shufflerstat.controller.HistoryController.HISTORY;
