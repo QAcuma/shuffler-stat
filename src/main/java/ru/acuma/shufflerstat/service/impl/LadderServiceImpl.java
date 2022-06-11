@@ -7,7 +7,6 @@ import ru.acuma.shufflerlib.model.web.entity.WebPlayer;
 import ru.acuma.shufflerlib.model.web.wrapper.LadderData;
 import ru.acuma.shufflerlib.repository.SeasonRepository;
 import ru.acuma.shufflerlib.repository.StatisticRepository;
-import ru.acuma.shufflerstat.mapper.StatisticMapper;
 import ru.acuma.shufflerstat.service.LadderService;
 
 import java.util.Comparator;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LadderServiceImpl implements LadderService {
 
-    private final StatisticMapper statisticMapper;
     private final SeasonRepository seasonRepository;
     private final StatisticRepository statisticRepository;
 
@@ -27,7 +25,6 @@ public class LadderServiceImpl implements LadderService {
         validateFilter(filter);
         List<WebPlayer> players = statisticRepository.findAllByFilter(filter)
                 .stream()
-                .map(statisticMapper::toWebPlayer)
                 .sorted(Comparator.comparingInt(WebPlayer::getScore).reversed())
                 .collect(Collectors.toList());
 
