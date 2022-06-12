@@ -18,7 +18,7 @@ repositories {
     mavenCentral()
 }
 
-var shufflerLibVersion = "1.0.2"
+var shufflerLibVersion = "1.0.3"
 var springBootVersion = "2.6.7"
 var lombokBootVersion = "1.18.24"
 val codeGsonVersion = "2.9.0"
