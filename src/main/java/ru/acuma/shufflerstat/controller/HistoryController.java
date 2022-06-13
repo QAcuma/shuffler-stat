@@ -26,7 +26,7 @@ public class HistoryController {
 
     @GetMapping(PLAYER_ID)
     public WebResponse<GameData> getHistory(
-            @PathVariable(required = false) Long playerId,
+            @PathVariable Long playerId,
             @RequestParam Discipline discipline,
             @RequestParam(required = false) Long season) {
         Filter filter = new Filter()
@@ -35,7 +35,6 @@ public class HistoryController {
                 .setSeasonId(season);
 
         return new WebResponse<>(historyService.getGames(filter));
-
     }
 
 }

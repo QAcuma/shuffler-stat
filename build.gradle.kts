@@ -2,7 +2,7 @@ plugins {
     id("java")
     id("application")
     id("idea")
-    id("org.springframework.boot") version "2.6.7"
+    id("org.springframework.boot") version "2.7.0"
 }
 
 group = "ru.acuma"
@@ -19,7 +19,8 @@ repositories {
 }
 
 var shufflerLibVersion = "1.0.3"
-var springBootVersion = "2.6.7"
+var springBootVersion = "2.7.0"
+var jwtVersion = "3.19.2"
 var lombokBootVersion = "1.18.24"
 val codeGsonVersion = "2.9.0"
 var junitVersion = "5.8.2"
@@ -31,6 +32,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    implementation("com.auth0:java-jwt:$jwtVersion")
+    implementation("org.springframework.security.oauth:spring-security-oauth2:2.5.0.RELEASE")
 
     implementation("org.jooq:jooq:3.16.6")
 
