@@ -26,8 +26,9 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public GraphData getGraphs(Filter filter) {
+    public GraphData getGraph(Filter filter) {
         filterService.fillDefaults(filter);
-        return new GraphData(statisticRepository.buildGraphsByFilter(filter));
+
+        return new GraphData(statisticRepository.buildGraphData(filter));
     }
 }

@@ -2,6 +2,7 @@ package ru.acuma.shufflerstat.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,30 +12,29 @@ import ru.acuma.shufflerlib.model.web.wrapper.GraphData;
 import ru.acuma.shufflerlib.model.web.wrapper.WebResponse;
 import ru.acuma.shufflerstat.service.HistoryService;
 
-import static ru.acuma.shufflerstat.controller.GraphController.GRAPHS;
+import static ru.acuma.shufflerstat.controller.GraphController.GRAPH;
+import static ru.acuma.shufflerstat.controller.PlayerController.PLAYER_ID;
 
 @RestController
-@RequestMapping(GRAPHS)
+@RequestMapping(GRAPH)
 @RequiredArgsConstructor
 public class GraphController {
 
-    public static final String GRAPHS = "/graphs";
+    public static final String GRAPH = "/graph";
 
     private final HistoryService historyService;
 
-    @GetMapping()
-    public WebResponse<GraphData> getGraphs(
-            @RequestParam(required = false) Long player,
+    @GetMapping(PLAYER_ID)
+    public WebResponse<GraphData> getGraph(
+            @PathVariable Long playerId,
             @RequestParam Discipline discipline,
-            @RequestParam(required = false) String chat,
             @RequestParam(required = false) Long season) {
         Filter filter = new Filter()
-                .setPlayerId(player)
+                .setPlayerId(playerId)
                 .setDiscipline(discipline)
-                .setChatName(chat)
                 .setSeasonId(season);
 
-        return new WebResponse<>(historyService.getGraphs(filter));
+        return new WebResponse<>(historyService.getGraph(filter));
     }
 
 }

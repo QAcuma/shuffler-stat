@@ -5,7 +5,8 @@ import ru.acuma.shufflerlib.model.web.wrapper.GameData;
 import ru.acuma.shufflerlib.model.web.wrapper.GraphData;
 
 public interface HistoryService {
+
     GameData getGames(Filter filter);
 
-    GraphData getGraphs(Filter filter);
+    GraphData getGraph(Filter filter);
 }

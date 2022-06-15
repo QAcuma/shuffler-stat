@@ -23,7 +23,7 @@ public class LadderServiceImpl implements LadderService {
     @Override
     public LadderData getLadder(Filter filter) {
         validateFilter(filter);
-        List<WebPlayer> players = statisticRepository.findAllByFilter(filter)
+        List<WebPlayer> players = statisticRepository.buildLadderData(filter)
                 .stream()
                 .sorted(Comparator.comparingInt(WebPlayer::getScore).reversed())
                 .collect(Collectors.toList());
