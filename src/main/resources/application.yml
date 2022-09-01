@@ -2,6 +2,9 @@ telegram.bot:
   name: ${K_SHUFFLER_BOT_NAME}
   token: ${K_SHUFFLER_TOKEN}
 
+media:
+  link: ${SHUFFLER_AVATAR_PATH:https://shuffler.fun/avatar/}
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver

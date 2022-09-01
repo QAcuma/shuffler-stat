@@ -2,7 +2,7 @@ plugins {
     id("java")
     id("application")
     id("idea")
-    id("org.springframework.boot") version "2.6.7"
+    id("org.springframework.boot") version "2.7.3"
 }
 
 group = "ru.acuma"
@@ -16,32 +16,29 @@ java {
 repositories {
     mavenLocal()
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
-var shufflerLibVersion = "1.0.3"
-var springBootVersion = "2.6.7"
-var lombokBootVersion = "1.18.24"
-val codeGsonVersion = "2.9.0"
-var junitVersion = "5.8.2"
-var mockitoVersion = "4.5.1"
+var springBootVersion = "2.7.3"
 
 dependencies {
-    implementation("ru.acuma:shuffler-lib:$shufflerLibVersion")
+    implementation(libs.shuffler.lib)
+    implementation(libs.spring.starter)
+    implementation(libs.spring.web)
+    implementation(libs.spring.security)
+    implementation(libs.bundles.telegram)
+    implementation(libs.bundles.data)
+    implementation(libs.jooq)
+    implementation(libs.bundles.util)
 
-    implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+
+    testCompileOnly(libs.lombok)
+    testAnnotationProcessor(libs.lombok)
+    testImplementation(libs.bundles.test)
+
     implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
-
-    implementation("org.jooq:jooq:3.16.6")
-
-    compileOnly("org.projectlombok:lombok:$lombokBootVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokBootVersion")
-
-    testCompileOnly("org.projectlombok:lombok:$lombokBootVersion")
-    testAnnotationProcessor("org.projectlombok:lombok:$lombokBootVersion")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-    testImplementation("org.mockito:mockito-core:$mockitoVersion")
 }
 
 tasks.withType<Test> {
