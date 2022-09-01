@@ -29,10 +29,11 @@ public class HistoryController {
             @PathVariable(required = false) Long playerId,
             @RequestParam Discipline discipline,
             @RequestParam(required = false) Long season) {
-        Filter filter = new Filter()
-                .setPlayerId(playerId)
-                .setDiscipline(discipline)
-                .setSeasonId(season);
+        var filter = Filter.builder()
+                .playerId(playerId)
+                .discipline(discipline)
+                .seasonId(season)
+                .build();
 
         return new WebResponse<>(historyService.getGames(filter));
 
