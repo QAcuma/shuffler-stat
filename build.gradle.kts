@@ -22,7 +22,7 @@ repositories {
 var springBootVersion = "2.7.3"
 
 dependencies {
-    implementation(libs.shuffler.lib)
+    implementation("ru.acuma:shuffler-lib:1.0.8")
     implementation(libs.spring.starter)
     implementation(libs.spring.web)
     implementation(libs.spring.security)

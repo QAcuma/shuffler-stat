@@ -1,6 +1,6 @@
 telegram.bot:
-  name: ${K_SHUFFLER_BOT_NAME}
-  token: ${K_SHUFFLER_TOKEN}
+  name: ${SHUFFLER_BOT_NAME}
+  token: ${SHUFFLER_TOKEN}
 
 media:
   link: ${SHUFFLER_AVATAR_PATH:https://shuffler.fun/avatar/}
@@ -8,9 +8,9 @@ media:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${K_SHUFFLER_DB_SERVER_HOST:localhost}:${K_SHUFFLER_DB_SERVER_PORT:5432}/${K_SHUFFLER_DB_NAME:shuffler_local}${K_SHUFFLER_DB_URL_PARAMS:}
-    username: ${K_SHUFFLER_DB_USER:local}
-    password: ${K_SHUFFLER_DB_PASSWORD:root}
+    url: jdbc:postgresql://${SHUFFLER_DB_SERVER_HOST:localhost}:${SHUFFLER_DB_SERVER_PORT:5432}/${SHUFFLER_DB_NAME:shuffler}${SHUFFLER_DB_URL_PARAMS:}
+    username: ${SHUFFLER_DB_USER:local}
+    password: ${SHUFFLER_DB_PASSWORD:root}
   flyway:
     out-of-order: false
     enabled: true
@@ -18,7 +18,7 @@ spring:
       - classpath:db/migration
 
 server:
-  port: ${K_SHUFFLER_PORT:8800}
+  port: ${SHUFFLER_PORT:8800}
   forward-headers-strategy: native
   servlet:
     context-path: /api
