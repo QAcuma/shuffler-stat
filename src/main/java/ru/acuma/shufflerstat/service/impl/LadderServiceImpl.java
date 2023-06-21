@@ -20,14 +20,12 @@ public class LadderServiceImpl implements LadderService {
 
     private final SeasonRepository seasonRepository;
     private final PlayerRepository playerRepository;
-    private final PlayerService playerService;
 
     @Override
     public LadderData getLadder(Filter filter) {
         validateFilter(filter);
         List<WebPlayer> players = playerRepository.buildLadderData(filter)
                 .stream()
-                .peek(playerService::secureScoreOnCalibration)
                 .sorted(Comparator.comparingInt(WebPlayer::getScore).reversed())
                 .collect(Collectors.toList());
 

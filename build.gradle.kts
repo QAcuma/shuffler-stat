@@ -22,7 +22,7 @@ repositories {
 var springBootVersion = "2.7.3"
 
 dependencies {
-    implementation("ru.acuma:shuffler-lib:1.0.9")
+    implementation("ru.acuma:shuffler-lib:2.0.0")
     implementation(libs.spring.starter)
     implementation(libs.spring.web)
     implementation(libs.spring.security)
@@ -34,11 +34,14 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
 
-    testCompileOnly(libs.lombok)
-    testAnnotationProcessor(libs.lombok)
-    testImplementation(libs.bundles.test)
-
     implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+}
+
+application {
+    applicationDefaultJvmArgs = listOf(
+            "--add-opens=java.base/java.lang=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
+    )
 }
 
 tasks.withType<Test> {
