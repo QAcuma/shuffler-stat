@@ -19,3 +19,7 @@ services:
 volumes:
   postgres-db:
     name: ${SHUFFLER_DB_NAME}
+
+networks:
+  shuffler:
+    driver: bridge
