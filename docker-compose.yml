@@ -1,0 +1,21 @@
+version: "3.8"
+name: shuffler
+
+services:
+  shuffler-stat:
+    container_name: shuffler-stat
+    build:
+      dockerfile: Dockerfile
+    environment:
+      SHUFFLER_BOT_TOKEN: ${SHUFFLER_BOT_TOKEN}
+      SHUFFLER_DB_PASSWORD: ${SHUFFLER_DB_PASSWORD}
+    ports:
+      - "8800:8800"
+    env_file:
+      - .env
+    networks:
+      - shuffler
+
+volumes:
+  postgres-db:
+    name: ${SHUFFLER_DB_NAME}
