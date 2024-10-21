@@ -1,21 +1,14 @@
-telegram.bot:
-  name: ${SHUFFLER_BOT_NAME}
-  token: ${SHUFFLER_TOKEN}
-
 media:
-  link: ${SHUFFLER_AVATAR_PATH:https://shuffler.fun/avatar/}
+  link: ${SHUFFLER_AVATAR_PATH:http://localhost/avatar/}
 
 spring:
   datasource:
+    hikari:
+      schema: public
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${SHUFFLER_DB_HOST:localhost}:${SHUFFLER_DB_PORT:5432}/${SHUFFLER_DB_NAME:shuffler_local}${SHUFFLER_DB_URL_PARAMS:}
     username: ${SHUFFLER_DB_USER:local}
     password: ${SHUFFLER_DB_PASSWORD:root}
-  flyway:
-    out-of-order: false
-    enabled: true
-    locations:
-      - classpath:db/migration
 
 server:
   port: ${SHUFFLER_PORT:8800}
@@ -31,4 +24,4 @@ server:
       max: 1000
       min-spare: 50
   cors.allowed:
-    origins: ${CORS_ORIGINS:http://localhost:3000}
+    origins: ${CORS_ORIGINS:http://localhost:3000, https://www.shuffler.owl-tech.ru}

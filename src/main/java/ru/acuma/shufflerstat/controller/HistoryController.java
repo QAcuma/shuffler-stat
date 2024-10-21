@@ -6,25 +6,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.acuma.shufflerlib.model.Discipline;
-import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.wrapper.GameData;
-import ru.acuma.shufflerlib.model.web.wrapper.WebResponse;
+import ru.acuma.shufflerstat.model.constants.Discipline;
+import ru.acuma.shufflerstat.model.Filter;
+import ru.acuma.shufflerstat.model.wrapper.GameData;
+import ru.acuma.shufflerstat.model.wrapper.WebResponse;
 import ru.acuma.shufflerstat.service.HistoryService;
 
-import static ru.acuma.shufflerstat.controller.HistoryController.HISTORY;
-import static ru.acuma.shufflerstat.controller.PlayerController.PLAYER_ID;
-
 @RestController
-@RequestMapping(HISTORY)
+@RequestMapping("/history")
 @RequiredArgsConstructor
 public class HistoryController {
 
     private final HistoryService historyService;
 
-    public static final String HISTORY = "/history";
-
-    @GetMapping(PLAYER_ID)
+    @GetMapping("/{playerId}")
     public WebResponse<GameData> getHistory(
             @PathVariable(required = false) Long playerId,
             @RequestParam Discipline discipline,
@@ -36,7 +31,5 @@ public class HistoryController {
                 .build();
 
         return new WebResponse<>(historyService.getGames(filter));
-
     }
-
 }

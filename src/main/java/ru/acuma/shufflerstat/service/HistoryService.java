@@ -1,12 +1,37 @@
 package ru.acuma.shufflerstat.service;
 
-import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.wrapper.GameData;
-import ru.acuma.shufflerlib.model.web.wrapper.GraphData;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.acuma.shufflerstat.mapper.GameMapper;
+import ru.acuma.shufflerstat.model.Filter;
+import ru.acuma.shufflerstat.model.wrapper.GameData;
+import ru.acuma.shufflerstat.model.wrapper.GraphData;
+import ru.acuma.shufflerstat.repository.RatingHistoryRepository;
 
-public interface HistoryService {
+@Service
+@RequiredArgsConstructor
+public class HistoryService {
 
-    GameData getGames(Filter filter);
+    private final RatingHistoryRepository ratingHistoryRepository;
+    private final GameMapper gameMapper;
+    private final FilterService filterService;
 
-    GraphData getGraph(Filter filter);
+    public GameData getGames(Filter filter) {
+        filterService.fillDefaults(filter);
+        var webGames = ratingHistoryRepository.findPlayerHistory(
+                        filter.getPlayerId(),
+                        filter.getDiscipline(),
+                        filter.getSeasonId()
+                ).stream()
+                .map(gameMapper::toWebGames)
+                .toList();
+
+        return new GameData(webGames);
+    }
+
+    public GraphData getGraph(Filter filter) {
+        filterService.fillDefaults(filter);
+
+        return null;
+    }
 }

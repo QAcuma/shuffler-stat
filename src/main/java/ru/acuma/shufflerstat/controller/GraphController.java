@@ -6,25 +6,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.acuma.shufflerlib.model.Discipline;
-import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.wrapper.GraphData;
-import ru.acuma.shufflerlib.model.web.wrapper.WebResponse;
+import ru.acuma.shufflerstat.model.constants.Discipline;
+import ru.acuma.shufflerstat.model.Filter;
+import ru.acuma.shufflerstat.model.wrapper.GraphData;
+import ru.acuma.shufflerstat.model.wrapper.WebResponse;
 import ru.acuma.shufflerstat.service.HistoryService;
 
-import static ru.acuma.shufflerstat.controller.GraphController.GRAPH;
-import static ru.acuma.shufflerstat.controller.PlayerController.PLAYER_ID;
-
 @RestController
-@RequestMapping(GRAPH)
+@RequestMapping("/graph")
 @RequiredArgsConstructor
 public class GraphController {
 
-    public static final String GRAPH = "/graph";
-
     private final HistoryService historyService;
 
-    @GetMapping(PLAYER_ID)
+    @GetMapping("/{playerId}")
     public WebResponse<GraphData> getGraph(
             @PathVariable Long playerId,
             @RequestParam Discipline discipline,
@@ -37,5 +32,4 @@ public class GraphController {
 
         return new WebResponse<>(historyService.getGraph(filter));
     }
-
 }

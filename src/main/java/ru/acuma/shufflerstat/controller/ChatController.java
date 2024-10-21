@@ -6,25 +6,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.acuma.shufflerlib.model.Discipline;
-import ru.acuma.shufflerlib.model.Filter;
-import ru.acuma.shufflerlib.model.web.wrapper.LadderData;
-import ru.acuma.shufflerlib.model.web.wrapper.WebResponse;
+import ru.acuma.shufflerstat.model.constants.Discipline;
+import ru.acuma.shufflerstat.model.Filter;
+import ru.acuma.shufflerstat.model.wrapper.LadderData;
+import ru.acuma.shufflerstat.model.wrapper.WebResponse;
 import ru.acuma.shufflerstat.service.LadderService;
 
-import static ru.acuma.shufflerstat.controller.ChatController.CHAT;
-
 @RestController
-@RequestMapping(CHAT)
+@RequestMapping("/chat")
 @RequiredArgsConstructor
 public class ChatController {
 
     private final LadderService ladderService;
 
-    public static final String CHAT = "/chat";
-    public static final String CHAT_NAME = "/{chatName}";
-
-    @GetMapping(CHAT_NAME)
+    @GetMapping("/{chatName}")
     public WebResponse<LadderData> getChatLadder(
             @PathVariable String chatName,
             @RequestParam Discipline discipline,

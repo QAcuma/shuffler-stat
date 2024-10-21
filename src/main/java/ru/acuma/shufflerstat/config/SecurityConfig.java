@@ -4,30 +4,33 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
 @Slf4j
+@Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     @Value("${server.cors.allowed.origins}")
     private String allowedOrigins;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated().and()
-                .csrf().disable()
-                .cors()
-                .configurationSource(request -> corsConfiguration());
+    @Bean
+    public SecurityFilterChain configure(HttpSecurity http, CorsConfiguration corsConfiguration) throws Exception {
+        return http.authorizeHttpRequests(requests -> requests
+                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+                        .anyRequest().permitAll())
+                .csrf(CsrfConfigurer::disable)
+                .cors(configure -> configure.configurationSource(request -> corsConfiguration))
+                .build();
     }
 
     @Bean
@@ -41,7 +44,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         corsConfiguration.setExposedHeaders(List.of("*"));
 
         return corsConfiguration;
-
     }
-
 }

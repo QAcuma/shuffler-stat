@@ -1,16 +1,18 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
-    id("java")
-    id("application")
-    id("idea")
-    id("org.springframework.boot") version "2.7.3"
+    java
+    application
+    idea
+    libs.plugins.springframework
 }
 
 group = "ru.acuma"
 version = "1.0.0"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_13
-    targetCompatibility = JavaVersion.VERSION_13
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -19,22 +21,20 @@ repositories {
     maven("https://jitpack.io")
 }
 
-var springBootVersion = "2.7.3"
-
 dependencies {
-    implementation("ru.acuma:shuffler-lib:2.0.0")
     implementation(libs.spring.starter)
     implementation(libs.spring.web)
+    implementation(libs.spring.data.jpa)
     implementation(libs.spring.security)
+    implementation(libs.mapstruct)
+    implementation(libs.postgresql)
     implementation(libs.bundles.telegram)
-    implementation(libs.bundles.data)
-    implementation(libs.jooq)
     implementation(libs.bundles.util)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
-
-    implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    annotationProcessor(libs.mapstruct.processor)
+    annotationProcessor(libs.mapstruct.lombok)
 }
 
 application {

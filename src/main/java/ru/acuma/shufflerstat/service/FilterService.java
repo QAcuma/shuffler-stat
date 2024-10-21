@@ -1,10 +1,19 @@
 package ru.acuma.shufflerstat.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.acuma.shufflerstat.model.Filter;
 
-import ru.acuma.shufflerlib.model.Filter;
 
-public interface FilterService {
+@Service
+@RequiredArgsConstructor
+public class FilterService {
 
-    void fillDefaults(Filter filter);
+    private final SeasonService seasonService;
 
+    public void fillDefaults(Filter filter) {
+        if (filter.getSeasonId() == null) {
+            filter.setSeasonId(seasonService.getCurrentSeasonId());
+        }
+    }
 }

@@ -1,20 +1,17 @@
 package ru.acuma.shufflerstat.mapper;
 
-import ma.glasnost.orika.MapperFacade;
-import org.springframework.stereotype.Component;
-import ru.acuma.shuffler.tables.pojos.Season;
-import ru.acuma.shufflerlib.mapper.BaseMapper;
-import ru.acuma.shufflerlib.model.web.entity.WebSeason;
+import jakarta.persistence.MappedSuperclass;
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import ru.acuma.shufflerstat.model.dto.WebSeason;
+import ru.acuma.shufflerstat.model.entity.Season;
 
-@Component
-public class SeasonMapper extends BaseMapper {
+@Mapper(config = MapperPreset.class)
+public interface SeasonMapper {
 
-    public WebSeason toWebSeason(Season source) {
-        mapperFactory.classMap(Season.class, WebSeason.class)
-                .byDefault()
-                .register();
-        MapperFacade mapper = mapperFactory.getMapperFacade();
-        return mapper.map(source, WebSeason.class);
-    }
-
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "name", source = "name")
+    WebSeason toWebSeason(Season season);
 }
