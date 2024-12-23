@@ -1,14 +1,12 @@
-@file:Suppress("UnstableApiUsage")
-
 plugins {
     java
     application
     idea
-    libs.plugins.springframework
+    alias(libs.plugins.springframework)
 }
 
 group = "ru.acuma"
-version = "1.0.0"
+version = "2.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -28,7 +26,6 @@ dependencies {
     implementation(libs.spring.security)
     implementation(libs.mapstruct)
     implementation(libs.postgresql)
-    implementation(libs.bundles.telegram)
     implementation(libs.bundles.util)
 
     compileOnly(libs.lombok)
@@ -39,8 +36,8 @@ dependencies {
 
 application {
     applicationDefaultJvmArgs = listOf(
-            "--add-opens=java.base/java.lang=ALL-UNNAMED",
-            "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
     )
 }
 

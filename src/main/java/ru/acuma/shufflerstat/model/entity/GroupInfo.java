@@ -17,8 +17,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.validation.constraints.Size;
-
 @Getter
 @Setter
 @Accessors(chain = true)
@@ -46,7 +44,6 @@ public class GroupInfo {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @Size(max = 16)
     @Column(name = "name", length = 16)
     private String name;
 }

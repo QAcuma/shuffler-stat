@@ -24,9 +24,6 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import ru.acuma.shufflerstat.model.constants.Discipline;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 @Getter
 @Setter
 @Accessors(chain = true)
@@ -44,35 +41,30 @@ import javax.validation.constraints.Size;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class RatingHistory extends BaseEntity {
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
-    @NotNull
     @Column(name = "change", nullable = false)
     private Integer change;
 
     @Column(name = "score")
     private Integer score;
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
-    @Size(max = 32)
     @Enumerated(EnumType.STRING)
     @Column(name = "discipline", length = 32)
     private Discipline discipline;

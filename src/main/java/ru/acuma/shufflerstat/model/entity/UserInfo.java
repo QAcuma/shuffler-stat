@@ -4,8 +4,6 @@ import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,9 +16,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import ru.acuma.shufflerstat.util.TimeMachine;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -53,11 +49,9 @@ public class UserInfo {
     @Column(name = "last_name", length = Integer.MAX_VALUE)
     private String lastName;
 
-    @NotNull
     @Column(name = "user_name", nullable = false, length = Integer.MAX_VALUE)
     private String userName;
 
-    @NotNull
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 

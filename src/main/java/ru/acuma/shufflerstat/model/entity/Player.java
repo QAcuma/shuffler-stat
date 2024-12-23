@@ -1,7 +1,6 @@
 package ru.acuma.shufflerstat.model.entity;
 
 import jakarta.persistence.Cacheable;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -22,7 +21,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -42,21 +40,18 @@ import java.util.List;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Player extends BaseEntity {
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id", nullable = false)
     private GroupInfo chat;
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private UserInfo user;
 
-    @NotNull
     @OneToMany(mappedBy = "player")
     @ToString.Exclude
     private List<Rating> ratings;

@@ -1,7 +1,6 @@
 package ru.acuma.shufflerstat.model.entity;
 
 import jakarta.persistence.Cacheable;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,13 +21,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.util.CollectionUtils;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Objects.nonNull;
 
 @Getter
 @Setter
@@ -47,7 +41,6 @@ import static java.util.Objects.nonNull;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Team extends BaseEntity {
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -57,7 +50,6 @@ public class Team extends BaseEntity {
     @Column(name = "is_winner")
     private Boolean isWinner;
 
-    @NotNull
     @OneToMany(mappedBy = "team")
     @ToString.Exclude
     private List<TeamPlayer> teamPlayers;

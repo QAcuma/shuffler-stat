@@ -20,7 +20,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -39,14 +38,12 @@ import javax.validation.constraints.NotNull;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class TeamPlayer extends BaseEntity {
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

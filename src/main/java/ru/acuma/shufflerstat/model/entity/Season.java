@@ -16,7 +16,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
@@ -39,7 +38,6 @@ public class Season extends BaseEntityC {
     @Column(name = "finished_at")
     private LocalDateTime finishedAt;
 
-    @Size(max = 64)
     @Column(name = "name", length = 64)
     private String name;
 }

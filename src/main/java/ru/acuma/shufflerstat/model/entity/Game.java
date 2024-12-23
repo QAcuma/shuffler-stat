@@ -24,16 +24,10 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.util.CollectionUtils;
 import ru.acuma.shufflerstat.model.constants.GameStatus;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Objects.nonNull;
 
 @Getter
 @Setter
@@ -52,15 +46,13 @@ import static java.util.Objects.nonNull;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Game extends BaseEntityC {
 
-    @NotNull
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
-    @Size(max = 32)
-    @NotNull
+
     @Column(name = "status", nullable = false, length = 32)
     @Enumerated(EnumType.STRING)
     private GameStatus status;
@@ -68,8 +60,11 @@ public class Game extends BaseEntityC {
     @Column(name = "finished_at")
     private LocalDateTime finishedAt;
 
-    @NotNull
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "game")
     @ToString.Exclude
     private List<Team> teams;
+
+    @OneToMany(mappedBy = "game")
+    @ToString.Exclude
+    private List<RatingHistory> histories;
 }
