@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.acuma.shufflerstat.mapper.GameMapper;
 import ru.acuma.shufflerstat.model.Filter;
+import ru.acuma.shufflerstat.model.dto.WebGame;
 import ru.acuma.shufflerstat.model.wrapper.GameData;
 import ru.acuma.shufflerstat.model.wrapper.GraphData;
 import ru.acuma.shufflerstat.repository.RatingHistoryRepository;
+
+import java.util.Comparator;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +27,7 @@ public class HistoryService {
                         filter.getSeasonId()
                 ).stream()
                 .map(gameMapper::toWebGames)
+                .sorted(Comparator.comparing(WebGame::getDate).reversed())
                 .toList();
 
         return new GameData(webGames);

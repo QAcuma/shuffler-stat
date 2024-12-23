@@ -56,7 +56,7 @@ public interface PlayerMapper {
         return histories.stream()
                 .filter(history -> history.getPlayer().equals(player))
                 .findFirst()
-                .map(RatingHistory::getChange)
+                .map(RatingHistory::getScore)
                 .orElse(0);
     }
 
